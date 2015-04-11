@@ -25,18 +25,22 @@
     <config>
 	  <fields name="params">
 		<fieldset name="basic">
-          <field name="rrage" type="list" default="18" label="PLG_SYSTEM_RUSRATE_AGE" description="PLG_SYSTEM_RUSRATE_AGE_DESC">
+          <field name="age" type="list" default="18" label="PLG_SYSTEM_RUSRATE_AGE" description="PLG_SYSTEM_RUSRATE_AGE_DESC">
  			<option value="0">0+</option>
  			<option value="6">6+</option>
  			<option value="12">12+</option>
  			<option value="16">16+</option>
 			<option value="18">18+</option>
  		 </field>
-          <field name="rrposition" type="list" default="0" label="PLG_SYSTEM_RUSRATE_POSITION" description="PLG_SYSTEM_RUSRATE_POSITION_DESC">
+          <field name="position" type="list" default="0" label="PLG_SYSTEM_RUSRATE_POSITION" description="PLG_SYSTEM_RUSRATE_POSITION_DESC">
  			<option value="tr">PLG_SYSTEM_RUSRATE_POSITION_TOP_RIGHT</option>
  			<option value="tl">PLG_SYSTEM_RUSRATE_POSITION_TOP_LEFT</option>
  			<option value="br">PLG_SYSTEM_RUSRATE_POSITION_BOTTOM_RIGHT</option>
  			<option value="br">PLG_SYSTEM_RUSRATE_POSITION_BOTTOM_LEFT</option>
+ 		 </field>
+		 <field name="colored" type="radio" default="0" label="colored" description="PLG_SYSTEM_RUSRATE_ONLY_FRONTPAGE_DESC">
+ 			<option value="1">JYES</option>
+ 			<option value="0">JNO</option>
  		 </field>
          <field name="zindex" type="text" size="12" default="800" label="PLG_SYSTEM_RUSRATE_ZINDEX" description="PLG_SYSTEM_RUSRATE_ZINDEX_DESC" />
          <field name="color" type="color" size="12" default="#FFFFFF" label="PLG_SYSTEM_RUSRATE_COLOR" description="PLG_SYSTEM_RUSRATE_COLOR_DESC" />
