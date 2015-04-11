@@ -41,63 +41,51 @@ class  plgSystemRusRate extends JPlugin {
         if (plgSystemRusRate::ShowOnFP()) return true;
 
         JPlugin::loadLanguage('plg_system_rusrate', JPATH_ADMINISTRATOR);
-
- 	    $age = $this->params->get('age', 18);
-		$txtmess = $this->params->get('txtmess', '');
-
-		// Getting plugin params
- 		$tmpl = $this->params->get('tmpl', 'red');
-   		$pos = $this->params->get('pos', 0);
+		
+		//Getting params
+ 	    $position = $this->params->get('position', 'tl');
+   		$colored=$this->params->get('colored', 1);    
+		$age = $this->params->get('age', 18);
+   		$zindex = $this->params->get('zindex', 800);
+   		$color = $this->params->get('color', '#FFFFFF');
+   		$bgcolor = $this->params->get('bgcolor', '#BC121F');
+		$text='';
+		if($colored){
+			if ($age<12) $bgcolor='green';
+			if ($age<=16) $bgcolor='yellow';
+			if ($age>16) $bgcolor='red';
+		}
+		switch($age) {
+			case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
+			case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
+			default: $text='RESTRICTED_FOR'.$age.'YEARS_OLD'; break;
+		}
 
 		// Getting created page text
 		$buffer = JResponse::getBody();
 		// Making replacements
-		$buffer = str_replace('</body>', '<div id="rrtl" style="background-color:green;">
-	<div class="rragetl">',$rrage,'+<div class="rrtiptl">
-     Разрешено для детей старше ',$rrage,' лет
-    </div></div>
-</div></body>', $buffer);
+		$buffer = str_replace('</body>', '<div id="rr'.$position.'" style=""><div class="rrage'.$position.'">'.$age.'+<div class="rrtip'.$position.'">'.text.'.</div></div></div></body>', $buffer);
 
 		if ($buffer != '') {
 			// Moving page text
 			JResponse::setBody($buffer);
 		}
+		$document->addStyleSheet(JURI::root(true).'/plugins/system/rusrate/css/rusrate.css');
+         
+        $document->addStyleDeclaration('
+			#rr, #rrbr, #rrbl, #rrtl, #rrtr {
+				background-color: '.$bgcolor.' !important
+				z-index: '.$zindex.';
+            }
+			.rrage, .rragetl, .rragetr, .rragebl, .rragebr{
+				color: '.$color.';
+			}
+            .rrtip, .rrtiptl, .rrtiptr, .rrtipbl, .rrtipbr {
+				background-color: '.$bgcolor.' !important;
+				color: '.$color.';
+            }');
 		return true;
 	}
-
-		function onAfterRoute()	{
-
-		    $app = JFactory::getApplication();
-		    // Checking that we are not in the admin panel
-		    if ($app->getName()!= 'site') {
-			  return true;
-	     	}
-
-			$document = JFactory::getDocument();
-            if ($document->getType() !== 'html') return true;
-
-            if (JRequest::getVar('tmpl') === 'component') return true;
-
-            if (plgSystemRusRate::ShowOnFP()) return true;
-
-    		$pos = $this->params->get('pos', 0);
-   		    $age = $this->params->get('age', 18);
-   		    $zindex = $this->params->get('zindex', 800);
-   		    $color = $this->params->get('color', '#FFFFFF');
-   		    $bgcolor = $this->params->get('bgcolor', '#BC121F');
-   		    $tmpl = $this->params->get('tmpl', 'red');
-
-            $document->addStyleSheet(JURI::root(true).'/plugins/system/rusrate/css/rusrate.css');
-         
-            $document->addStyleDeclaration('
-             #rr, #rrbr, #rrbl, #rrtl, #rrtr {
-                z-index: '.$zindex.';
-            }
-            .rrtip, .rrtiptl, .rrtiptr, .rrtipbl, .rrtipbr {
-               background-color: '.$bgcolor.' !important;
-               color: '.$color.';
-            }');
-		}
 
 		function ShowOnFP() {
 
