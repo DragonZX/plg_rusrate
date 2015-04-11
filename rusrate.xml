@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="2.5" type="plugin" group="system" method="upgrade">
-	<name>System - StopKids</name>
-	<author>ecolora</author>
-	<creationDate>2013-02-08</creationDate>
-	<copyright>Copyright (C) 2012 ecolora.com. All rights reserved.</copyright>
-	<authorEmail>ecolora@gmail.com</authorEmail>
-	<authorUrl>http://www.ecolora.com/</authorUrl>
+	<name>PLG_SYSTEM_RUSRATE</name>
+	<author>ecolora, AUnited</author>
+	<creationDate>2015-03-23</creationDate>
+	<copyright>Copyright (C) 2015 AUnited. Co. Ltd All rights reserved.</copyright>
+	<authorEmail>info@aunited.ru</authorEmail>
+	<authorUrl>http://aunited.ru/</authorUrl>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<version>1.2.1</version>
-	<description>PLG_SYSTEM_STOPKIDS_XML_DESCRIPTION</description>
+	<version>0.9</version>
+	<description>PLG_SYSTEM_RUSRATE_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="stopkids">stopkids.php</filename>
 		<filename>index.html</filename>
@@ -26,30 +26,31 @@
     <config>
 	  <fields name="params">
 		<fieldset name="basic">
-          <field name="age" type="list" default="18" label="PLG_SYSTEM_STOPKIDS_AGE" description="PLG_SYSTEM_STOPKIDS_AGE_DESC">
+          <field name="rrage" type="list" default="18" label="PLG_SYSTEM_STOPKIDS_AGE" description="PLG_SYSTEM_STOPKIDS_AGE_DESC">
  			<option value="0">0+</option>
  			<option value="6">6+</option>
  			<option value="12">12+</option>
  			<option value="16">16+</option>
 			<option value="18">18+</option>
  		 </field>
-          <field name="pos" type="list" default="0" label="PLG_SYSTEM_STOPKIDS_POSITION" description="PLG_SYSTEM_STOPKIDS_POSITION_DESC">
- 			<option value="0">PLG_SYSTEM_STOPKIDS_POSITION_TOP_RIGHT</option>
- 			<option value="1">PLG_SYSTEM_STOPKIDS_POSITION_TOP_LEFT</option>
- 			<option value="2">PLG_SYSTEM_STOPKIDS_POSITION_BOTTOM_RIGHT</option>
- 			<option value="3">PLG_SYSTEM_STOPKIDS_POSITION_BOTTOM_LEFT</option>
+          <field name="rrposition" type="list" default="0" label="PLG_SYSTEM_STOPKIDS_POSITION" description="PLG_SYSTEM_STOPKIDS_POSITION_DESC">
+ 			<option value="tr">PLG_SYSTEM_STOPKIDS_POSITION_TOP_RIGHT</option>
+ 			<option value="tl">PLG_SYSTEM_STOPKIDS_POSITION_TOP_LEFT</option>
+ 			<option value="br">PLG_SYSTEM_STOPKIDS_POSITION_BOTTOM_RIGHT</option>
+ 			<option value="br">PLG_SYSTEM_STOPKIDS_POSITION_BOTTOM_LEFT</option>
  		 </field>
-         <field name="zindex" type="text" size="12" default="999" label="PLG_SYSTEM_STOPKIDS_ZINDEX" description="PLG_SYSTEM_STOPKIDS_ZINDEX_DESC" />
+         <field name="zindex" type="text" size="12" default="800" label="PLG_SYSTEM_STOPKIDS_ZINDEX" description="PLG_SYSTEM_STOPKIDS_ZINDEX_DESC" />
          <field name="color" type="text" size="12" default="#FFFFFF" label="PLG_SYSTEM_STOPKIDS_COLOR" description="PLG_SYSTEM_STOPKIDS_COLOR_DESC" />
          <field name="bgcolor" type="text" size="12" default="#BC121F" label="PLG_SYSTEM_STOPKIDS_BGCOLOR" description="PLG_SYSTEM_STOPKIDS_BGCOLOR_DESC" />
-         <field name="tmpl" type="folderlist" default="red" label="PLG_SYSTEM_STOPKIDS_SELECT_THEME" directory="plugins/system/stopkids/themes" filter="" exclude="" stripext="" description="PLG_SYSTEM_STOPKIDS_SELECT_THEME_DESC" />
       	 <field name="onlyFP" type="radio" default="0" label="PLG_SYSTEM_STOPKIDS_ONLY_FRONTPAGE" description="PLG_SYSTEM_STOPKIDS_ONLY_FRONTPAGE_DESC">
- 			<option value="1">PLG_SYSTEM_STOPKIDS_YES</option>
- 			<option value="0">PLG_SYSTEM_STOPKIDS_NO</option>
+ 			<option value="1">JYES</option>
+ 			<option value="0">JNO</option>
  		 </field>
-         <field name="txtmess" type="text" size="40" default="" label="PLG_SYSTEM_STOPKIDS_TEXT_MESSAGE" description="PLG_SYSTEM_STOPKIDS_TEXT_MESSAGE_DESC" />
          <field name="infoURL" type="text" size="40" default="" label="PLG_SYSTEM_STOPKIDS_INFORMATION_URL" description="PLG_SYSTEM_STOPKIDS_INFORMATION_URL_DESC" />
 	    </fieldset>
 	  </fields>
 	</config>
+	 <updateservers>
+        <server type="extension" priority="1" name="RusRate"><![CDATA[http://help.aunited.ru/rusrate/update/RusRate-update.xml]]></server>
+    </updateservers>
 </extension>

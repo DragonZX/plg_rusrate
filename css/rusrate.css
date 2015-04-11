@@ -1,0 +1,48 @@
+/*Circle style init*/
+#rr, #rrbr, #rrbl, #rrtl, #rrtr {
+	cursor: default;
+	width: 40px;
+	height: 40px;
+	box-shadow: inset 0 0 1em #333, 0 0 1em #333;
+	background-color: #FF0000;
+	position: fixed;
+	z-index:800;
+}
+/*Circle direction init*/
+#rrtl{border-radius: 0px 0px 40px 0px; left:0px; top:0px;}
+#rrtr{border-radius: 0px 0px 0px 40px; right:0px; top:0px;}
+#rrbl{border-radius: 0px 40px 0px 0px; left:0px; bottom:0px;}
+#rrbr{border-radius: 40px 0px 0px 0px; right:0px; bottom:0px;
+	}
+/*Inline text style*/
+.rrage, .rragetl, .rragetr, .rragebl, .rragebr{
+color:white;
+text-shadow: 0 1px 0 #333;
+text-align:right;
+font-family:Impact;
+margin: 30% 30% 10% 10%;
+}
+/*Text direction init*/
+.rragetl{margin: 10% 30% 30% 10%;}
+.rragetr{margin: 10% 10% 30% 30%;}
+.rragebl{margin: 30% 30% 10% 10%;}
+.rragebr{margin: 30% 10% 10% 30%;}
+/*tipinit*/
+.rrtip, .rrtiptl, .rrtiptr, .rrtipbl, .rrtipbr{
+    cursor: default;
+	min-width: 202px;
+	min-height: 40px;
+	display:none;
+	border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 0 1em #333;    
+    padding: 15px !important;
+    position: fixed;
+    text-align: center !important;
+    text-shadow: 0 1px 0 #333;
+    background-color: #FF0000;
+}
+/*Tip direction init*/
+.rragetl:hover .rrtiptl {display: block; left:25px; top:25px;}
+.rragetr:hover .rrtiptr {display: block; right:25px; top:25px;}
+.rragebl:hover .rrtipbl {display: block; left:25px; bottom:25px;}
+.rragebr:hover .rrtipbr {display: block; right:25px; bottom:25px;}
