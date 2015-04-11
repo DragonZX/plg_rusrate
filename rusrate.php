@@ -43,18 +43,9 @@ class  plgSystemRusRate extends JPlugin {
         JPlugin::loadLanguage('plg_system_rusrate', JPATH_ADMINISTRATOR);
 		
 		//Getting params
- 	    $position = $this->params->get('position', 'tl');
-   		$colored=$this->params->get('colored', 1);    
+ 	    $position = $this->params->get('position', 'tl');    
 		$age = $this->params->get('age', 18);
-   		$zindex = $this->params->get('zindex', 800);
-   		$color = $this->params->get('color', '#FFFFFF');
-   		$bgcolor = $this->params->get('bgcolor', '#BC121F');
 		$text='';
-		if($colored){
-			if ($age<12) $bgcolor='green';
-			if ($age<=16) $bgcolor='yellow';
-			if ($age>16) $bgcolor='red';
-		}
 		switch($age) {
 			case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
 			case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
@@ -64,17 +55,47 @@ class  plgSystemRusRate extends JPlugin {
 		// Getting created page text
 		$buffer = JResponse::getBody();
 		// Making replacements
-		$buffer = str_replace('</body>', '<div id="rr'.$position.'" style=""><div class="rrage'.$position.'">'.$age.'+<div class="rrtip'.$position.'">'.text.'.</div></div></div></body>', $buffer);
+		$buffer = str_replace('</body>', '<div id="rr'.$position.'" style=""><div class="rrage'.$position.'">'.$age.'+<div class="rrtip'.$position.'">'.$text.'.</div></div></div></body>', $buffer);
 
 		if ($buffer != '') {
 			// Moving page text
 			JResponse::setBody($buffer);
 		}
-		$document->addStyleSheet(JURI::root(true).'/plugins/system/rusrate/css/rusrate.css');
-         
-        $document->addStyleDeclaration('
-			#rr, #rrbr, #rrbl, #rrtl, #rrtr {
-				background-color: '.$bgcolor.' !important
+		return true;
+	}
+	
+	function onAfterRoute()	{
+			$app = JFactory::getApplication();
+		    // проверка, что мы не в административной панели
+		    if ($app->getName()!= 'site') {
+			  return true;
+	     	}
+
+			$document = JFactory::getDocument();
+            if ($document->getType() !== 'html') return true;
+
+            if (JRequest::getVar('tmpl') === 'component') return true;
+
+            if (plgSystemRusRate::ShowOnFP()) return true;
+			$document->addStyleSheet(JURI::root(true).'/plugins/system/rusrate/css/rusrate.css');
+			//Getting params
+			$position = $this->params->get('position', 'tl');  
+			$age = $this->params->get('age', 18);
+			$zindex = $this->params->get('zindex', 800);
+			$color = $this->params->get('color', '#FFFFFF');
+			$bgcolor = '';
+			$text='';
+			if ($age<12) $bgcolor='green';
+			if (($age>=12)and($age<=16)) $bgcolor='yellow';
+			if ($age>16) $bgcolor='red';
+			switch($age) {
+				case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
+				case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
+				default: $text='RESTRICTED_FOR'.$age.'YEARS_OLD'; break;
+			}
+			$style = 
+			'#rr, #rrbr, #rrbl, #rrtl, #rrtr {
+				background-color: '.$bgcolor.' !important;
 				z-index: '.$zindex.';
             }
 			.rrage, .rragetl, .rragetr, .rragebl, .rragebr{
@@ -83,8 +104,8 @@ class  plgSystemRusRate extends JPlugin {
             .rrtip, .rrtiptl, .rrtiptr, .rrtipbl, .rrtipbr {
 				background-color: '.$bgcolor.' !important;
 				color: '.$color.';
-            }');
-		return true;
+            }';
+			$document->addStyleDeclaration($style);
 	}
 
 		function ShowOnFP() {
