@@ -13,7 +13,7 @@ class  plgSystemStopKids extends JPlugin {
     function onAfterRender() {
 
      	$app = JFactory::getApplication();
-		// проверка, что мы не в административной панели
+		// Checking that we are not in the admin panel
 		if ($app->getName()!= 'site') {
 			return true;
 		}
@@ -47,7 +47,7 @@ class  plgSystemStopKids extends JPlugin {
         }
         else $txtmess = str_replace('%s',$age,$txtmess);
 
-		// пример обработки параметра
+		// Getting plugin params
  		$tmpl = $this->params->get('tmpl', 'red');
    		$pos = $this->params->get('pos', 0);
 
@@ -66,16 +66,16 @@ class  plgSystemStopKids extends JPlugin {
              break;
         }
 
-		// получаем текст сформированной страницы
+		// Getting created page text
 		$buffer = JResponse::getBody();
-		// делаем замены в тексте
+		// Making replacements
 		$buffer = str_replace('</body>', '<a class="stopkids" target="_blank" href="'.$this->params->get('infoURL', JTEXT::_('PLG_SYSTEM_STOPKIDS_URL')).'">
 		<img style="border: 0px none;" src="'.JURI::root(true).'/plugins/system/stopkids/themes/'.$tmpl.'/'.$folder.'/'.$age.'+.png">
 		</a><a class="stopkids" target="_blank" href="'.$this->params->get('infoURL', JTEXT::_('PLG_SYSTEM_STOPKIDS_URL')).'"><span class="tip">'.$txtmess.'</span>
 		</a></body>', $buffer);
 
 		if ($buffer != '') {
-			// подменяем текст страницы
+			// Moving page text
 			JResponse::setBody($buffer);
 		}
 		return true;
@@ -84,7 +84,7 @@ class  plgSystemStopKids extends JPlugin {
 		function onAfterRoute()	{
 
 		    $app = JFactory::getApplication();
-		    // проверка, что мы не в административной панели
+		    // Checking that we are not in the admin panel
 		    if ($app->getName()!= 'site') {
 			  return true;
 	     	}
@@ -171,15 +171,15 @@ class  plgSystemStopKids extends JPlugin {
      	  $app  = JApplication::getInstance('site');
 		  $menu = $app->getMenu();
 
-          //Получили главное меню
+          //Getting main menu
 
 		  $home = $menu->getDefault($document->language);
 		  $active = $menu->getActive();
-          //Если мы находимся на домашней странице
+          //if we are at the homepage
           if (is_object($home) && ($active == $home))
             $fpage=true;
 
-         //по-умолчанию на всех страницах сайта
+         //at the all pages by default
 		 $onlyFP = $this->params->get('onlyFP', 0);
 
 		 if (($onlyFP) && (!$fpage)) {
