@@ -38,7 +38,7 @@
  			<option value="br">PLG_SYSTEM_RUSRATE_POSITION_BOTTOM_RIGHT</option>
  			<option value="br">PLG_SYSTEM_RUSRATE_POSITION_BOTTOM_LEFT</option>
  		 </field>
-		 <field name="colored" type="radio" default="0" label="colored" description="PLG_SYSTEM_RUSRATE_ONLY_FRONTPAGE_DESC">
+		 <field name="colored" type="radio" class="btn-group btn-group-yesno" default="1" label="colored" description="PLG_SYSTEM_RUSRATE_ONLY_FRONTPAGE_DESC">
  			<option value="1">JYES</option>
  			<option value="0">JNO</option>
  		 </field>
