@@ -89,7 +89,7 @@ class  plgSystemRusRate extends JPlugin {
 			switch($age) {
 				case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
 				case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
-				default: $text='RESTRICTED_FOR'.$age.'YEARS_OLD'; break;
+				default: $text='PLG_SYSTEM_RUSRATE_RESTRICTED_FOR'.$age.'PLG_SYSTEM_RUSRATE_YEARS_OLD'; break;
 			}
 			$style = 
 			'#rr, #rrbr, #rrbl, #rrtl, #rrtr {
