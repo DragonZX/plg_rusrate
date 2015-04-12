@@ -4,7 +4,7 @@
 # @license		GNU/GPL v2.0
 # Updated		11st April 2015
 #
-# Based on Elcora's StopKids ( http://elcora.com ), under GNU/GPL v2.0
+# Based on Ecolora's StopKids ( http://ecolora.com ), under GNU/GPL v2.0
 #
 # Site: http://aunited.ru
 # Email: info@aunited.ru
@@ -65,7 +65,7 @@ class  plgSystemRusRate extends JPlugin {
 	
 	function onAfterRoute()	{
 			$app = JFactory::getApplication();
-		    // проверка, что мы не в административной панели
+		    // check if we are not in the admin panel
 		    if ($app->getName()!= 'site') {
 			  return true;
 	     	}
