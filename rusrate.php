@@ -45,6 +45,9 @@ class  plgSystemRusRate extends JPlugin {
 		//Getting params
  	    $position = $this->params->get('position', 'tl');    
 		$age = $this->params->get('age', 18);
+		$details = $this->params->get('details', 1);
+		detblock='';
+		if ($details) $detblock='<div class="rrtip'.$position.'">'.$text.'.</div>';
 		switch($age) {
 			case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
 			case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
@@ -54,7 +57,7 @@ class  plgSystemRusRate extends JPlugin {
 		// Getting created page text
 		$buffer = JResponse::getBody();
 		// Making replacements
-		$buffer = str_replace('</body>', '<div id="rr'.$position.'" style=""><div class="rrage'.$position.'">'.$age.'+<div class="rrtip'.$position.'">'.$text.'.</div></div></div></body>', $buffer);
+		$buffer = str_replace('</body>', '<div id="rr'.$position.'" style=""><div class="rrage'.$position.'">'.$age.'+'.$detblock.'</div></div></body>', $buffer);
 
 		if ($buffer != '') {
 			// Moving page text
