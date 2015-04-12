@@ -45,7 +45,6 @@ class  plgSystemRusRate extends JPlugin {
 		//Getting params
  	    $position = $this->params->get('position', 'tl');    
 		$age = $this->params->get('age', 18);
-		$text='';
 		switch($age) {
 			case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
 			case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
@@ -83,8 +82,7 @@ class  plgSystemRusRate extends JPlugin {
 			$age = $this->params->get('age', 18);
 			$zindex = $this->params->get('zindex', 800);
 			$color = $this->params->get('color', '#FFFFFF');
-			$bgcolor = '';
-			$text='';
+			$bgcolor = $this->params->get('bgcolor', '#FF0000');
 			if ($age<12) $bgcolor='green';
 			if (($age>=12)and($age<=16)) $bgcolor='yellow';
 			if ($age>16) $bgcolor='red';
