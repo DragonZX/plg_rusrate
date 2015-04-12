@@ -45,11 +45,10 @@ class  plgSystemRusRate extends JPlugin {
 		//Getting params
  	    $position = $this->params->get('position', 'tl');    
 		$age = $this->params->get('age', 18);
-		$text='';
 		switch($age) {
 			case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
 			case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
-			default: $text='RESTRICTED_FOR'.$age.'YEARS_OLD'; break;
+			default: $text='RESTRICTED_FOR '.$age.' YEARS_OLD'; break;
 		}
 
 		// Getting created page text
@@ -83,15 +82,17 @@ class  plgSystemRusRate extends JPlugin {
 			$age = $this->params->get('age', 18);
 			$zindex = $this->params->get('zindex', 800);
 			$color = $this->params->get('color', '#FFFFFF');
-			$bgcolor = '';
-			$text='';
+			$bgcolor = $this->params->get('bgcolor', '#FF0000');
+			$colored = $this->params->get('colored', '1');
+			if($colored){
 			if ($age<12) $bgcolor='green';
 			if (($age>=12)and($age<=16)) $bgcolor='yellow';
 			if ($age>16) $bgcolor='red';
+			}
 			switch($age) {
 				case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
 				case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
-				default: $text='RESTRICTED_FOR'.$age.'YEARS_OLD'; break;
+				default: $text='PLG_SYSTEM_RUSRATE_RESTRICTED_FOR'.$age.'PLG_SYSTEM_RUSRATE_YEARS_OLD'; break;
 			}
 			$style = 
 			'#rr, #rrbr, #rrbl, #rrtl, #rrtr {
