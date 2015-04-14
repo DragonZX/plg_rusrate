@@ -1,48 +1,45 @@
-/*Circle style init*/
-#rr, #rrbr, #rrbl, #rrtl, #rrtr {
-	cursor: default;
-	width: 40px;
-	height: 40px;
-	box-shadow: inset 0 0 1em #333, 0 0 1em #333;
-	background-color: #FF0000;
-	position: fixed;
-	z-index:800;
+@media screen and (max-width: 980px) {
+	.rr{display:none;}
 }
-/*Circle direction init*/
-#rrtl{border-radius: 0px 0px 40px 0px; left:0px; top:0px;}
-#rrtr{border-radius: 0px 0px 0px 40px; right:0px; top:0px;}
-#rrbl{border-radius: 0px 40px 0px 0px; left:0px; bottom:0px;}
-#rrbr{border-radius: 40px 0px 0px 0px; right:0px; bottom:0px;
-	}
-/*Inline text style*/
-.rrage, .rragetl, .rragetr, .rragebl, .rragebr{
-color:white;
-text-shadow: 0 1px 0 #333;
-text-align:right;
-font-family:Impact;
-margin: 30% 30% 10% 10%;
+.rr{position:fixed;}
+.shape{
+	display:block;
+	width: 0;
+	height: 0;
+	z-index:inherit;
 }
-/*Text direction init*/
-.rragetl{margin: 10% 30% 30% 10%;}
-.rragetr{margin: 10% 10% 30% 30%;}
-.rragebl{margin: 30% 30% 10% 10%;}
-.rragebr{margin: 30% 10% 10% 30%;}
-/*tipinit*/
-.rrtip, .rrtiptl, .rrtiptr, .rrtipbl, .rrtipbr{
-    cursor: default;
-	min-width: 202px;
-	min-height: 40px;
+.rrmessage{
 	display:none;
-	border-radius: 10px 10px 10px 10px;
-    box-shadow: 0 0 1em #333;    
-    padding: 15px !important;
-    position: fixed;
-    text-align: center !important;
-    text-shadow: 0 1px 0 #333;
-    background-color: #FF0000;
+	z-index:inherit;
+	width:300px;
+	background-color:red;
+	min-height:75px;
+	padding:10px;
+	font-size:14px;
+	position:relative;
 }
-/*Tip direction init*/
-.rragetl:hover .rrtiptl {display: block; left:25px; top:25px;}
-.rragetr:hover .rrtiptr {display: block; right:25px; top:25px;}
-.rragebl:hover .rrtipbl {display: block; left:25px; bottom:25px;}
-.rragebr:hover .rrtipbr {display: block; right:25px; bottom:25px;}
+.rrage{
+	display:block;
+	position:absolute;
+	font-size:18px;
+	font-weight:bold;
+}
+.rr:hover{cursor:pointer;}
+/*   Top   */
+.p_tr , .p_tl{top:0;}
+.p_tr .shape, .p_tl .shape{ border-top: 75px solid red; }
+.p_tr .rrage, .p_tl .rrage{top:0;}
+/*  Bottom  */
+.p_br , .p_bl{bottom:0;}
+.p_br .shape, .p_bl .shape{ border-bottom: 75px solid red; }
+.p_br .rrage, .p_bl .rrage{bottom:0;}
+/*  Right  */
+.p_tr, .p_br{ right:0;}
+.p_tr .shape,.p_br .shape{border-left: 75px solid transparent;}
+.p_tr .rrmessage, .p_br .rrmessage{margin-left:75px;right:0;}
+.p_tr .rrage, .p_br .rrage{left:0;	padding:10px 40px;}
+/*  Left  */
+.p_tl, .p_bl{left:0;}
+.p_tl .shape, .p_bl .shape{border-right: 75px solid transparent;}
+.p_tl .rrmessage, .p_bl .rrmessage{margin-right:75px;left:0;}
+.p_tl .rrage, .p_bl .rrage{right:0;padding:10px 40px;}
