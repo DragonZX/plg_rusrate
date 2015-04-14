@@ -45,19 +45,16 @@ class  plgSystemRusRate extends JPlugin {
 		//Getting params
  	    $position = $this->params->get('position', 'tl');    
 		$age = $this->params->get('age', 18);
-		$details = $this->params->get('details', 1);
-		detblock='';
-		if ($details) $detblock='<div class="rrtip'.$position.'">'.$text.'.</div>';
 		switch($age) {
-			case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
-			case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
-			default: $text='RESTRICTED_FOR '.$age.' YEARS_OLD'; break;
+			case '0': $text=JText::_('PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'); break;
+			case '18': case '21': $text=JText::_('PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'); break;
+			default: $text=JText::sprintf('PLG_SYSTEM_RUSRATE_RESTRICTED',$age); break;
 		}
 
 		// Getting created page text
 		$buffer = JResponse::getBody();
 		// Making replacements
-		$buffer = str_replace('</body>', '<div id="rr'.$position.'" style=""><div class="rrage'.$position.'">'.$age.'+'.$detblock.'</div></div></body>', $buffer);
+		$buffer = str_replace('</body>', '<div class="rr p_'.$position.'"><div class="shape"></div><p class="rrage">'.$age.'+</p><p class="rrmessage">'.$text.'.</p></div></body>', $buffer);
 
 		if ($buffer != '') {
 			// Moving page text
@@ -87,29 +84,28 @@ class  plgSystemRusRate extends JPlugin {
 			$color = $this->params->get('color', '#FFFFFF');
 			$bgcolor = $this->params->get('bgcolor', '#FF0000');
 			$colored = $this->params->get('colored', '1');
+			$details = $this->params->get('details', 1);
 			if($colored){
-			if ($age<12) $bgcolor='green';
-			if (($age>=12)and($age<=16)) $bgcolor='yellow';
-			if ($age>16) $bgcolor='red';
+			if ($age<12) $bgcolor='YellowGreen';
+			if (($age>=12)and($age<=16)) $bgcolor='orange';
+			if ($age>16) $bgcolor='FireBrick';
 			}
-			switch($age) {
-				case '0': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'; break;
-				case '18': case '21': $text='PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'; break;
-				default: $text='PLG_SYSTEM_RUSRATE_RESTRICTED_FOR'.$age.'PLG_SYSTEM_RUSRATE_YEARS_OLD'; break;
+			if(!$details){
+				$dStyle = '.rrmessage{display:none !important;}';
+			}else{
+				$dStyle = '.rr:hover .rrage, .rr:hover .shape{display:none;}.rr:hover .rrmessage{display:block;}';
 			}
-			$style = 
-			'#rr, #rrbr, #rrbl, #rrtl, #rrtr {
-				background-color: '.$bgcolor.' !important;
-				z-index: '.$zindex.';
-            }
-			.rrage, .rragetl, .rragetr, .rragebl, .rragebr{
-				color: '.$color.';
-			}
-            .rrtip, .rrtiptl, .rrtiptr, .rrtipbl, .rrtipbr {
-				background-color: '.$bgcolor.' !important;
-				color: '.$color.';
-            }';
-			$document->addStyleDeclaration($style);
+			$style = '
+				.p_br .shape, .p_bl .shape{ border-bottom: 75px solid '.$bgcolor.' !important; }
+				.p_tr .shape, .p_tl .shape{ border-top: 75px solid '.$bgcolor.' !important; }
+				.rrmessage{background-color:'.$bgcolor.';}
+				.rr a{color:'.$color.' !important;}
+				.rrmessage{color:'.$color.';}
+				.rrage{color:'.$color.';}
+				.rr {z-index:'.$zindex.';}
+				.rrage{z-index:'.($zindex + 1).';}
+			';
+			$document->addStyleDeclaration($style.$dStyle);
 	}
 
 		function ShowOnFP() {
