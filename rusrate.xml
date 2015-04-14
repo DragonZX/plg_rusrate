@@ -36,7 +36,7 @@
  			<option value="tr">PLG_SYSTEM_RUSRATE_POSITION_TOP_RIGHT</option>
  			<option value="tl">PLG_SYSTEM_RUSRATE_POSITION_TOP_LEFT</option>
  			<option value="br">PLG_SYSTEM_RUSRATE_POSITION_BOTTOM_RIGHT</option>
- 			<option value="br">PLG_SYSTEM_RUSRATE_POSITION_BOTTOM_LEFT</option>
+ 			<option value="bl">PLG_SYSTEM_RUSRATE_POSITION_BOTTOM_LEFT</option>
  		 </field>
          <field name="zindex" type="text" size="12" default="800" label="PLG_SYSTEM_RUSRATE_ZINDEX" description="PLG_SYSTEM_RUSRATE_ZINDEX_DESC" />
          <field name="color" type="color" size="12" default="#FFFFFF" label="PLG_SYSTEM_RUSRATE_COLOR" description="PLG_SYSTEM_RUSRATE_COLOR_DESC" />
@@ -45,11 +45,11 @@
 		 <option value="0">JNo</option>
 		 <option value="1">JYes</option>
 		 </field>
-      	 <field name="detblock" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_SYSTEM_RUSRATE_DETBLOCK" description="PLG_SYSTEM_RUSRATE_DETBLOCK_DESC">
+		 <field name="details" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_SYSTEM_RUSRATE_DETBLOCK" description="PLG_SYSTEM_RUSRATE_DETBLOCK_DESC">
  			<option value="1">JYES</option>
  			<option value="0">JNO</option>
  		 </field>
-		 <field name="onlyFP" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_SYSTEM_RUSRATE_ONLY_FRONTPAGE" description="PLG_SYSTEM_RUSRATE_ONLY_FRONTPAGE_DESC">
+      	 <field name="onlyFP" type="radio" class="btn-group btn-group-yesno" default="0" label="PLG_SYSTEM_RUSRATE_ONLY_FRONTPAGE" description="PLG_SYSTEM_RUSRATE_ONLY_FRONTPAGE_DESC">
  			<option value="1">JYES</option>
  			<option value="0">JNO</option>
  		 </field>
