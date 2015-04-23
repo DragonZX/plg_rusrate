@@ -45,17 +45,15 @@ class  plgSystemRusRate extends JPlugin {
 		//Getting params
  	    $position = $this->params->get('position', 'tl');    
 		$age = $this->params->get('age', 18);
-<<<<<<< HEAD
+
 		switch($age) {
 			case '0': $text=JText::_('PLG_SYSTEM_RUSRATE_MESSAGE_ZERO'); break;
 			case '18': case '21': $text=JText::_('PLG_SYSTEM_RUSRATE_MESSAGE_ADULT'); break;
 			default: $text=JText::sprintf('PLG_SYSTEM_RUSRATE_RESTRICTED',$age); break;
-=======
 		if($age > 12){
 				$text = JText::sprintf('PLG_SYSTEM_RUSRATE_WARN_MESSAGE', $age);
 		}else{
 				$text = JText::_('PLG_SYSTEM_RUSRATE_SEC_MESSAGE');
->>>>>>> 9695537dd1fb4a4fdd1a8cf144268eb5417a41f4
 		}
 
 		// Getting created page text
@@ -93,9 +91,9 @@ class  plgSystemRusRate extends JPlugin {
 			$colored = $this->params->get('colored', '1');
 			$details = $this->params->get('details', 1);
 			if($colored){
-			if ($age<12) $bgcolor='YellowGreen';
-			if (($age>=12)and($age<=16)) $bgcolor='orange';
-			if ($age>16) $bgcolor='FireBrick';
+			if ($age<12) $bgcolor='#a1be57';
+			if (($age>=12)and($age<=16)) $bgcolor='#e7a244';
+			if ($age>16) $bgcolor='#d24a43';
 			}
 			if(!$details){
 				$dStyle = '.rrmessage{display:none !important;}';
